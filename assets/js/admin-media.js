@@ -3,15 +3,15 @@ jQuery(function ($) {
   var $imageId = $('#wcasl-modal-image-id');
   var $preview = $('#wcasl-modal-image-preview');
 
+  $('.wcasl-color-field').wpColorPicker();
+
   function renderPreview(url) {
     if (!url) {
-      $preview.empty();
+      $preview.removeClass('has-image').html('<span>' + (wcaslAdminMedia.emptyImage || 'No image selected') + '</span>');
       return;
     }
 
-    $preview.html(
-      '<img src="' + url + '" alt="' + (wcaslAdminMedia.previewText || '') + '" style="max-width:240px;height:auto;display:block;border:1px solid #dcdcde;padding:4px;background:#fff;">'
-    );
+    $preview.addClass('has-image').html('<img src="' + url + '" alt="' + (wcaslAdminMedia.previewText || '') + '">');
   }
 
   $('#wcasl-select-image').on('click', function (e) {

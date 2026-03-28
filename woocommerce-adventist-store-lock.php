@@ -2,19 +2,17 @@
 /**
  * Plugin Name: WooCommerce Adventist Store Lock
  * Description: Blocks purchases on a recurring weekly schedule and displays a native full-screen modal during the blocked period.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: Giovana Limongi
  * License: MIT
  * Text Domain: wcasl
- * License: GPL v2 or later
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'WCASL_VERSION', '1.2.0' );
+define( 'WCASL_VERSION', '1.3.0' );
 define( 'WCASL_PLUGIN_FILE', __FILE__ );
 define( 'WCASL_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WCASL_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -40,8 +38,10 @@ function wcasl_activate() {
         'modal_image_id'         => 0,
         'modal_title'            => 'Store temporarily unavailable',
         'modal_message'          => 'Purchases are temporarily unavailable during this period. Please come back after the scheduled reopening time.',
+        'notice_message'         => 'Purchases are temporarily unavailable during this period. Please come back after the scheduled reopening time.',
         'button_label'           => 'I understand',
         'show_close_button'      => '0',
+        'show_countdown'         => '1',
         'block_page_interaction' => '1',
         'overlay_bg'             => 'rgba(0,0,0,0.72)',
         'box_bg'                 => '#ffffff',

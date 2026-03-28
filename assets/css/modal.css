@@ -7,17 +7,18 @@
   justify-content: center;
   padding: 24px;
   background: var(--wcasl-overlay-bg, rgba(0,0,0,.72));
+  backdrop-filter: blur(8px);
 }
 
 .wcasl-modal-box {
   position: relative;
   width: 100%;
   max-width: 560px;
-  border-radius: 18px;
-  padding: 28px 24px;
+  border-radius: 22px;
+  padding: 32px 28px;
   background: var(--wcasl-box-bg, #fff);
   color: var(--wcasl-text-color, #111);
-  box-shadow: 0 18px 40px rgba(0,0,0,.2);
+  box-shadow: 0 24px 64px rgba(0,0,0,.24);
   text-align: center;
 }
 
@@ -27,7 +28,7 @@
 }
 
 .wcasl-modal-image-wrap {
-  margin: 0 0 16px;
+  margin: 0 0 18px;
 }
 
 .wcasl-modal-image {
@@ -35,24 +36,62 @@
   max-width: 100%;
   height: auto;
   margin: 0 auto;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
 .wcasl-modal-box h2 {
   margin: 0 0 12px;
-  font-size: 1.75rem;
-  line-height: 1.2;
+  font-size: clamp(1.75rem, 3vw, 2rem);
+  line-height: 1.15;
 }
 
 .wcasl-modal-message p {
   margin: 0 0 12px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.wcasl-countdown {
+  margin: 20px 0 18px;
+}
+
+.wcasl-countdown-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.wcasl-countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.wcasl-countdown-item {
+  padding: 14px 10px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.05);
+}
+
+.wcasl-countdown-item strong {
+  display: block;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.wcasl-countdown-item span {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  opacity: 0.72;
 }
 
 .wcasl-modal-button {
   appearance: none;
   border: 0;
   border-radius: 999px;
-  padding: 12px 22px;
+  padding: 13px 24px;
   cursor: pointer;
   background: var(--wcasl-button-bg, #111);
   color: var(--wcasl-button-text, #fff);
@@ -61,8 +100,8 @@
 
 .wcasl-modal-close {
   position: absolute;
-  top: 8px;
-  right: 10px;
+  top: 10px;
+  right: 12px;
   border: 0;
   background: transparent;
   font-size: 28px;
@@ -73,4 +112,26 @@
 
 body.wcasl-no-scroll {
   overflow: hidden !important;
+}
+
+@media (max-width: 640px) {
+  .wcasl-modal-overlay {
+    padding: 16px;
+  }
+
+  .wcasl-modal-box {
+    padding: 28px 20px;
+  }
+
+  .wcasl-countdown-grid {
+    gap: 8px;
+  }
+
+  .wcasl-countdown-item {
+    padding: 12px 8px;
+  }
+
+  .wcasl-countdown-item strong {
+    font-size: 1.45rem;
+  }
 }

@@ -18,7 +18,7 @@ function wcasl_validate_add_to_cart( $passed, $product_id, $quantity ) {
     $settings = wcasl_get_settings();
 
     if ( '1' === $settings['block_purchases'] && wcasl_is_store_locked() ) {
-        wc_add_notice( wp_kses_post( $settings['modal_message'] ), 'error' );
+        wc_add_notice( wp_kses_post( $settings['notice_message'] ), 'error' );
         return false;
     }
 
@@ -45,7 +45,7 @@ function wcasl_add_store_locked_notice() {
         return;
     }
 
-    $message = wp_kses_post( $settings['modal_message'] );
+    $message = wp_kses_post( $settings['notice_message'] );
 
     if ( function_exists( 'is_cart' ) && is_cart() ) {
         wc_add_notice( $message, 'error' );

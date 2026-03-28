@@ -10,6 +10,8 @@ function wcasl_enqueue_modal_assets() {
         return;
     }
 
+    $unlock_datetime = wcasl_get_next_unlock_datetime();
+
     wp_enqueue_style( 'wcasl-modal', WCASL_PLUGIN_URL . 'assets/css/modal.css', array(), WCASL_VERSION );
     wp_enqueue_script( 'wcasl-modal', WCASL_PLUGIN_URL . 'assets/js/modal.js', array(), WCASL_VERSION, true );
 
@@ -19,6 +21,9 @@ function wcasl_enqueue_modal_assets() {
         array(
             'showCloseButton'      => ( '1' === $settings['show_close_button'] ),
             'blockPageInteraction' => ( '1' === $settings['block_page_interaction'] ),
+            'showCountdown'        => ( '1' === $settings['show_countdown'] && $unlock_datetime instanceof DateTimeInterface ),
+            'unlockAt'             => $unlock_datetime instanceof DateTimeInterface ? $unlock_datetime->getTimestamp() : 0,
+            'countdownExpired'     => __( 'Store reopening now', 'wcasl' ),
         )
     );
 
@@ -71,6 +76,17 @@ function wcasl_render_modal() {
                 <?php endif; ?>
             <?php else : ?>
                 <span id="wcasl-modal-title" class="screen-reader-text"><?php echo esc_html( $settings['modal_title'] ?: __( 'Store lock modal', 'wcasl' ) ); ?></span>
+            <?php endif; ?>
+
+            <?php if ( '1' === $settings['show_countdown'] ) : ?>
+                <div class="wcasl-countdown" aria-live="polite">
+                    <span class="wcasl-countdown-label"><?php esc_html_e( 'Store reopens in', 'wcasl' ); ?></span>
+                    <div class="wcasl-countdown-grid" id="wcasl-countdown-grid">
+                        <div class="wcasl-countdown-item"><strong id="wcasl-countdown-hours">00</strong><span><?php esc_html_e( 'Hours', 'wcasl' ); ?></span></div>
+                        <div class="wcasl-countdown-item"><strong id="wcasl-countdown-minutes">00</strong><span><?php esc_html_e( 'Minutes', 'wcasl' ); ?></span></div>
+                        <div class="wcasl-countdown-item"><strong id="wcasl-countdown-seconds">00</strong><span><?php esc_html_e( 'Seconds', 'wcasl' ); ?></span></div>
+                    </div>
+                </div>
             <?php endif; ?>
 
             <?php if ( '' !== trim( (string) $settings['button_label'] ) ) : ?>
