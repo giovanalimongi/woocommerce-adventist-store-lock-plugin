@@ -10,6 +10,20 @@ A WordPress plugin that blocks purchases on a recurring weekly schedule and disp
 - Optional cart/checkout notice
 - Blocks add-to-cart and product purchases
 - Admin settings page under **WooCommerce > Store Lock**
+- Native modal with optional image support
+- Countdown timer showing remaining time until the store reopens
+- Improved admin settings UX with a more structured layout
+- Configurable:
+  - start day and time
+  - end day and time
+  - modal title
+  - modal message
+  - button label
+  - close button visibility
+  - page interaction blocking
+  - colors
+  - custom CSS
+  - countdown visibility
 
 ## Notes
 
@@ -18,8 +32,16 @@ A WordPress plugin that blocks purchases on a recurring weekly schedule and disp
 - Designed as a lightweight, self-contained plugin
 
 
-## New in 1.2.0
+## Latest update
+
+### v1.2.0
 
 - Native modal now supports **text**, **image**, or **image + text** content modes.
 - Admin settings now include a WordPress Media Library image selector.
 - Added a direct **Settings** link on the Plugins screen.
+
+### v1.3.0
+- Added countdown timer to the modal during blocked periods
+- Improved admin UX with a more organized settings interface
+- Added color picker support
+- Improved modal customization workflow
